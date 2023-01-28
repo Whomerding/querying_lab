@@ -328,14 +328,15 @@ LIMIT 21
 def problem_seven(request):
 
     # Make sure to set this equal to the primary key of the row you just created!
-    student_id = 11
+  student_id = 11
+  student= Student.objects.get(pk = 11)
+  student.delete()
+  try:
+      student = Student.objects.get(pk=student_id)
+  except ObjectDoesNotExist:
+      print('Great! It failed and couldnt find the object because we deleted it!')
 
-    try:
-        student = Student.objects.get(pk=student_id)
-    except ObjectDoesNotExist:
-        print('Great! It failed and couldnt find the object because we deleted it!')
-
-    return complete(request)
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
@@ -385,8 +386,17 @@ SELECT `school_db_student`.`id`,
 # Find all of the instructors that only belong to a single course
 # Print out the instructors full name and number of courses to the console
 def bonus_problem(request):
+  instructor = Instructor.objects.annotate(course_count=Count('course'))
+  print (instructor)
+  for instructor in instructor:
+    if instructor.course_count==1:
+      print(f"Instructor Name: {instructor.first_name} {instructor.last_name}")
 
-    return complete(request)
+
+  
+
+
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
