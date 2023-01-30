@@ -275,6 +275,9 @@ VALUES ('Kyle', 'Harwood', 9, 3.0)
 # Query the previoiusly created student by the id and update the "gpa" to a new value
 # Then query the studets table to get that student by their id
 # Print the new student's id, full name, and gpa to the terminal
+
+# WHEN TESTING I CREATED MULTIPLE STUDENTS: I DELETED THEM BUT THE PK IS NOW DIFFERENT....FOR CODE TO WORK YOU WILL NEED TO CHANGE PK TO 16 TO MATCH NEW STUDENT CREATED IN NUMBER 5
+
 def problem_six(request):
   new_student=Student.objects.filter(pk=15).update(gpa=3.95)
   new_student=Student.objects.get(pk=15)
@@ -328,6 +331,7 @@ LIMIT 21
 def problem_seven(request):
 
     # Make sure to set this equal to the primary key of the row you just created!
+    # WHEN TESTING I CREATED MULTIPLE STUDENTS: I DELETED THEM BUT THE PK IS NOW DIFFERENT....FOR CODE TO WORK YOU WILL NEED TO CHANGE PK TO 16 TO MATCH NEW STUDENT CREATED IN NUMBER 5
   student_id = 15
   student = Student.objects.filter(id=15)
   """student= Student.objects.get(pk = 11)"""
