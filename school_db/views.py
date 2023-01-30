@@ -145,10 +145,10 @@ SELECT `school_db_instructor`.`id`,
 def problem_three(request):
   instructors = Instructor.objects.get(pk=2)
   
-  print (f"Instructor Name: {instructors.first_name} {instructors.last_name}")
+  print (f"Instructor Name: {instructors.first_name} {instructors.last_name}\nCourses:")
   courses = Course.objects.filter(instructor__pk = 2)
   for course in courses:
-    print(f"Courses: -{course.name}")
+    print(f"-{course.name}")
   return complete(request)
 
 
@@ -276,8 +276,8 @@ VALUES ('Kyle', 'Harwood', 9, 3.0)
 # Then query the studets table to get that student by their id
 # Print the new student's id, full name, and gpa to the terminal
 def problem_six(request):
-  new_student=Student.objects.filter(pk=11).update(gpa=3.95)
-  new_student=Student.objects.get(pk=11)
+  new_student=Student.objects.filter(pk=15).update(gpa=3.95)
+  new_student=Student.objects.get(pk=15)
   print (f"ID: {new_student.pk}\nFull Name: {new_student.first_name} {new_student.last_name}\nGPA: {new_student.gpa}")
     # Make sure to set this equal to the primary key of the row you just created!
   """student_id = 11"""
@@ -328,8 +328,9 @@ LIMIT 21
 def problem_seven(request):
 
     # Make sure to set this equal to the primary key of the row you just created!
-  student_id = 11
-  student= Student.objects.get(pk = 11)
+  student_id = 15
+  student = Student.objects.filter(id=15)
+  """student= Student.objects.get(pk = 11)"""
   student.delete()
   try:
       student = Student.objects.get(pk=student_id)
